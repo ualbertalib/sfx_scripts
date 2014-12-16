@@ -5,7 +5,12 @@ class SingleTargetTitles
   attr_reader :all, :matches
 
   def initialize(datafile)
-    data = MARC::XMLReader.new(File.open(datafile))
+    begin
+      data = MARC::XMLReader.new(File.open(datafile))
+    rescue => e
+      puts "Unable to open file. Exiting (#{e})"
+      exit
+    end
     @all = data.entries
   end
 
@@ -24,7 +29,7 @@ class SingleTargetTitles
   def for(query)
     single_target_titles = []
     matches(query).each do |match|
-      single_target_titles << match["245"]["a"] if single?(@all.index(match))
+      single_target_titles << {issn: match['022']['a'], sfx_object_id: match['090']['a'], title: match["245"]["a"]} if single?(@all.index(match))
     end
     single_target_titles
   end
