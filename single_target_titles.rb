@@ -24,7 +24,7 @@ class SingleTargetTitles
   def for(query)
     single_target_titles = []
     matches(query).each do |match|
-      single_target_titles << match if single?(@all.index(match))
+      single_target_titles << match["245"]["a"] if single?(@all.index(match))
     end
     single_target_titles
   end
