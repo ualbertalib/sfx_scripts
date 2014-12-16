@@ -34,7 +34,7 @@ class SingleTargetTitles
   def search(query)
     matches = []
     for record in @all do
-      matches << record if record['866']['t'] == query
+      matches << record if ((record['866']['t'] == query) || (record['866']['s'] == query))
     end
     matches
   end
