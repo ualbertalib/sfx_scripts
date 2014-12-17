@@ -35,22 +35,22 @@ class SingleTargetTitles
   end
 
   def csv(query)
-    csv_array = []
     titles_array = self.for(query)
-    titles_array.each do |title|
-      csv_array << "#{title[:issn]}, #{title[:sfx_object_id]}, #{title[:title]}"
-    end
-    csv_array.join("\n")
+    [].tap do |csv_array|
+      titles_array.each do |title|
+        csv_array << "#{title[:issn]}, #{title[:sfx_object_id]}, #{title[:title]}"
+      end
+    end.join("\n")
   end
 
   private
 
   def search(query)
-    matches = []
-    for record in @all do
-      matches << record if ((record['866']['t'] == query) || (record['866']['s'] == query))
+    [].tap do |matches|
+      for record in @all do
+        matches << record if ((record['866']['t'] == query) || (record['866']['s'] == query))
+      end
     end
-    matches
   end
 
 end
