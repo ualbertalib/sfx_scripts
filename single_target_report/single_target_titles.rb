@@ -34,6 +34,15 @@ class SingleTargetTitles
     single_target_titles
   end
 
+  def csv(query)
+    csv_array = []
+    titles_array = self.for(query)
+    titles_array.each do |title|
+      csv_array << "#{title[:issn]}, #{title[:sfx_object_id]}, #{title[:title]}"
+    end
+    csv_array.join("\n")
+  end
+
   private
 
   def search(query)

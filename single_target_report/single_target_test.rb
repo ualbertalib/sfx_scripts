@@ -42,4 +42,10 @@ class TestSingleTargets < Minitest::Test
     assert_equal [issn: "0001-0383", sfx_object_id: "954921332002", title: "ABCA bulletin"], @single_target_titles.for(query_target)
   end
 
+  def test_csv_output
+    query_target = "1000000000001505" #="EBSCOHOST_ACADEMIC_SEARCH_COMPLETE"
+    @single_target_titles = SingleTargetTitles.new("test_sfxdata_2.xml")
+    assert_equal "0001-0383, 954921332002, ABCA bulletin", @single_target_titles.csv(query_target)
+  end
+
 end
