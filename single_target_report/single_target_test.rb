@@ -39,7 +39,7 @@ class TestSingleTargets < Minitest::Test
   def test_array_of_single_title_records
     query_target = "1000000000001505" #="EBSCOHOST_ACADEMIC_SEARCH_COMPLETE"
     @single_target_titles = SingleTargetTitles.new("test_sfxdata_2.xml")
-    assert_equal ["ABCA bulletin"], @single_target_titles.for(query_target)
+    assert_equal [issn: "0001-0383", sfx_object_id: "954921332002", title: "ABCA bulletin"], @single_target_titles.for(query_target)
   end
 
 end
