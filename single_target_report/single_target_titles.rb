@@ -1,5 +1,9 @@
 require "marc"
 
+# This program reads in a list of e-journals in MARCXML format, takes a target name as an 
+# optional search parameter and returns the journals in thie list which only have 
+# a single target (and which optionally belongs to the specified target name). 
+
 # Class to represent a list of JOURNALS which have TARGETS
 class SingleTargetTitles
 
